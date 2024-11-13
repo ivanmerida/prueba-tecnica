@@ -6,7 +6,7 @@ Se deben tener instalados estas versiones para que no haya ningún inconveniente
     PHP v8.3.0
     MySQL
 
-1. Clonar el repositorio https://github.com/ivanmerida/prueba-tecnica.git
+1. Clonar el repositorio, comando: git clone https://github.com/ivanmerida/prueba-tecnica.git
      ahí vienen tres carpetas, api-nodejs, service-php y frontend
 
 2. Poner toda la carpeta prueba-tecnica en C:\xampp\htdocs si se usa xampp como servidor de php y mysql
