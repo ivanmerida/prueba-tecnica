@@ -16,12 +16,14 @@ Se deben tener instalados estas versiones para que no haya ningún inconveniente
 3. Acceder a la carpeta api-nodejs
     1. Acceder a la carpeta src/database/create.sql copiar el script
     2. Abrir el administrador base de datos que use, abrir un nuevo script, pegar lo que habiamos copiado y ejecutar el script
-    3. Abrir la terminal en la ruta "Aquí va lo demás de la ruta, dependiendo donde se encuentre la      carpeta"/prueba-tecnica/api-nodejs
-    4. Una vez estando en dicha ruta hay que instalar los paquetes de node
+    3. Si nuestras credenciales son distintas para acceder a nuestra base de datos
+    se debe cambiar en api-nodejs/config.js
+    4. Abrir la terminal en la ruta "Aquí va lo demás de la ruta, dependiendo donde se encuentre la      carpeta"/prueba-tecnica/api-nodejs
+    5. Una vez estando en dicha ruta hay que instalar los paquetes de node
         comando: npm install
-    5. Ya que se instalaron todos los paquetes sin error alguno se debe correr el proyecto
+    6. Ya que se instalaron todos los paquetes sin error alguno se debe correr el proyecto
         estando en misma ruta que el paso 3, comando: npm run dev
-    6. Si todo va bien, se ejecutara en http://localhost:3000
+    7. Si todo va bien, se ejecutara en http://localhost:3000
 
 4. Acceder a la carpeta frontend
     1. Abrir una terminal en la ruta "Aquí va lo demás de la ruta, dependiendo donde se encuentre la      carpeta"/prueba-tecnica/frontend

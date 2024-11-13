@@ -1,5 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
+// Permitir métodos HTTP específicos
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
+// Permitir encabezados personalizados
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 // Importamos librería para generar el pdf
 require('fpdf186/fpdf.php');
 
