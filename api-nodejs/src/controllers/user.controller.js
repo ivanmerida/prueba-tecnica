@@ -19,7 +19,7 @@ const userController = {
             console.log(reg);
 
             if (reg.length <= 0) {
-                res.status(200).send({
+                res.status(401).send({
                     data: undefined,
                     message: 'Datos incorrectos',
                 });
@@ -29,7 +29,7 @@ const userController = {
             let user = reg[0];
             bcrypt.compare(data.password, user.password, async function (err, result) {
                 if (!result) {
-                    res.status(200).send({
+                    res.status(401).send({
                         message: 'Credenciales incorrectas',
                         data: undefined
                     });
@@ -47,8 +47,7 @@ const userController = {
                 });
             });
         } catch (err) {
-            console.log(err);
-            res.status(200).send({
+            res.status(500).send({
                 message: err
             });
         }
@@ -57,14 +56,12 @@ const userController = {
     // método de registro de usuario
     register: async (req, res) => {
         let data = req.body;
-        console.log(data);
-        console.log('se esta ejecutando');
         try {
             const query_email = `SELECT name FROM users WHERE email = '${data.email}';`;
             const [reg_email] = await connection.query(query_email);
 
             if (reg_email.length > 0) {
-                res.status(200).send({
+                res.status(401).send({
                     data: reg_email,
                     message: 'El email ya está asociado a una cuenta'
                 });
@@ -72,7 +69,7 @@ const userController = {
             }
 
             if (!data.password) {
-                res.status(200).send({
+                res.status(401).send({
                     message: 'No hay una contraseña',
                     data: undefined
                 });
@@ -81,7 +78,7 @@ const userController = {
 
             bcrypt.hash(data.password, saltRounds, async function (err, hash) {
                 if (!hash) {
-                    res.status(200).send({
+                    res.status(500).send({
                         message: 'ErrorServer',
                         data: undefined
                     });
@@ -93,15 +90,13 @@ const userController = {
                         VALUES (NULL, '${data.name}', '${data.surname}','${data.email}','${data.password}');`;
                 const [reg] = await connection.query(query);
 
-                console.log('registro exitoso');
-                res.status(200).send({
+                res.status(201).send({
                     data: reg,
                     status: 'success'
                 });
 
             });
         } catch (err) {
-            console.log(err);
             res.status(500).send({
                 message: err
             });

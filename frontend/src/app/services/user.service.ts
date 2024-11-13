@@ -45,7 +45,7 @@ export class UserService {
 
   // método api para generar reportepdf
   getReport(data: {}): Observable<Blob> {
-    const api = 'http://localhost:3000/service-php/index.php';
+    const api = 'http://localhost/prueba-tecnica/service-php/index.php';
     return this.http.post(api, data, { responseType: 'blob' });
   }
 }

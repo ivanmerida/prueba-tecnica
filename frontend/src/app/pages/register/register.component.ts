@@ -1,7 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { showPassword } from '../../helpers/showPassword';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,9 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent implements AfterViewInit {
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   user = {
@@ -29,34 +33,36 @@ export class RegisterComponent implements AfterViewInit {
 
   // método para registrar
   onSubmit(form: NgForm) {
+    // valida si las contraseñas nueva coinciden
+    if (this.validatePasswords()) {
+      return;
+    }
     this.userService.register(this.user).subscribe({
       next: (response) => {
         console.log(response);
+        if (response.status !== 'success') {
+          this.toastr.error(response.message, 'Error');
+          return;
+        }
+        this.toastr.success('El usuario se registro correctamente', 'Exito');
+        this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error('Error al obtener los datos', err);  // Manejo de errores
+        this.toastr.error('Error al registrar los datos', 'Error de servidor');
       }
     });
   }
 
+  validatePasswords(): boolean {
+    if (this.user.password !== this.user.confirmPassword) {
+      this.toastr.error('Las nuevas contreñas no coinciden', 'Error');
+      return true;
+    }
+    return false;
+  }
 
   // ver y ocultar contraseña
   showPassword(id: string, idShowPassword: string) {
-    const password = <HTMLInputElement>document.getElementById(id)!;
-    const show_password = <HTMLInputElement>document.getElementById(idShowPassword)!;
-
-    if (password.type == 'password') {
-      password.type = 'text';
-      show_password.src = "../../../assets/img/eye-open.svg";
-
-      setTimeout(function () {
-        password.type = 'password';
-        show_password.src = "../../../assets/img/eye-close.svg";
-      }, 3000);
-
-    } else {
-      password.type = 'password';
-      show_password.src = "../../../assets/img/eye-close.svg";
-    }
+    showPassword(id, idShowPassword);
   }
 }

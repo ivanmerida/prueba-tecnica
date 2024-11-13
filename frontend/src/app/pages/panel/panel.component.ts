@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormatDatePipe } from '../../pipes/format-date.pipe';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-panel',
@@ -19,7 +20,8 @@ export class PanelComponent implements OnInit {
   public texto = 'hola mundo';
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class PanelComponent implements OnInit {
 
       },
       error: (error) => {
-        console.error('Error al descargar el PDF', error);
+        this.toastr.error('Error al descargar el PDF', 'Error de servidor');
       }
     });
   }
