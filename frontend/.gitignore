@@ -1,0 +1,10 @@
+# Ignorar node_modules
+/node_modules
+
+# Ignorar la carpeta de configuración de VSCode
+.vscode/
+
+# Ignorar la carpeta de compilación de Angular
+/dist
+
+.angular/

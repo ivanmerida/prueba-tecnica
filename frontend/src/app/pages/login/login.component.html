@@ -1,0 +1,38 @@
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4">INICIO DE SESIÓN</h3>
+                            </div>
+                            <div class="card-body">
+                                <form (ngSubmit)="onSubmit(login)" #login="ngForm">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="email" name="email" type="email" [(ngModel)]="user.email" 
+                                            placeholder="name@example.com" email="" required="" #emailField="ngModel"/>
+                                        <label for="inputEmail">Correo electrónico</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="password" name="password" type="password" [(ngModel)]="user.password" 
+                                            placeholder="Password" required="" />
+                                        <label for="inputPassword">Contraseña</label>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <button class="btn btn-primary" type="submit" [disabled]="!login.valid">Inicio
+                                            sesión</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small"><a [routerLink]="['/register']">Registros</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
