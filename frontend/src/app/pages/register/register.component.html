@@ -7,42 +7,52 @@
                         <div class="card-header">
                             <h3 class="text-center font-weight-light my-4">Registro de usuario</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body register-form not-show">
                             <form (ngSubmit)="onSubmit(register)" #register="ngForm">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
                                             <input class="form-control" id="inputFirstName" type="text"
-                                                placeholder="Enter your first name" name="name" [(ngModel)]="user.name" required=""/>
+                                                placeholder="Enter your first name" name="name" [(ngModel)]="user.name"
+                                                required="" />
                                             <label for="inputFirstName">Nombre</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input class="form-control" id="inputLastName" type="text" name="surname" [(ngModel)]="user.surname" 
-                                                placeholder="Enter your last name" required=""/>
+                                            <input class="form-control" id="inputLastName" type="text" name="surname"
+                                                [(ngModel)]="user.surname" placeholder="Enter your last name"
+                                                required="" />
                                             <label for="inputLastName">Apellidos</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" name="email" [(ngModel)]="user.email" 
-                                        placeholder="name@example.com" email="" required=""/>
+                                    <input class="form-control" id="inputEmail" type="email" name="email"
+                                        [(ngModel)]="user.email" placeholder="name@example.com" email="" required="" />
                                     <label for="inputEmail">Correo electrónico</label>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="inputPassword" type="password" name="password" [(ngModel)]="user.password" 
-                                                placeholder="Create a password" required=""/>
+                                            <input class="form-control" id="password" type="password" name="password"
+                                                [(ngModel)]="user.password" placeholder="Create a password"
+                                                required="" />
                                             <label for="inputPassword">Contraseña</label>
+                                            <img class="img-eye" id="show-password"
+                                                src="../../../assets/img/eye-close.svg"
+                                                (click)="showPassword('password', 'show-password')" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <input class="form-control" id="inputPasswordConfirm" type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword" 
+                                            <input class="form-control" id="confirm-password" type="password"
+                                                name="confirmPassword" [(ngModel)]="user.confirmPassword"
                                                 placeholder="Confirm password" required="" />
                                             <label for="inputPasswordConfirm">Confirmar contraseña</label>
+                                            <img class="img-eye" id="confirm-show-password"
+                                                src="../../../assets/img/eye-close.svg"
+                                                (click)="showPassword('confirm-password', 'confirm-show-password')" />
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +65,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
-                            <div class="small"><a href="login.html">Login</a></div>
+                            <div class="small"><a [routerLink]="['/']">Login</a></div>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 'use strict'
-
 const jwt = require('jwt-simple');
 const moment = require('moment');
 const secret = 'pruebatecnicadenodejs2024';
 
+// método para generar el token con determinado tiempo
 exports.createToken = function (user) {
     const payload = {
         sub: user.id,

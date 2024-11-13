@@ -4,6 +4,7 @@ const jwt = require('jwt-simple');
 const moment = require('moment');
 const secret = 'pruebatecnicadenodejs2024';
 
+// valida que el token sea autentico y valido
 exports.auth = function (req, res, next) {
 
     if (!req.headers.authorization) {

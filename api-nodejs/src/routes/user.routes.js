@@ -3,10 +3,7 @@ const userController = require('../controllers/user.controller');
 const auth = require('../middlewares/authenticate');
 const routes = Router();
 
-// const { validateLogin, validateCreate, validateUpdate } = require('../validators/users');
-
-
-// routes.get('/getUser/:id', auth.auth, userController.getUser);
+// rutas publicas de usuario
 routes.post('/login', userController.login);
 routes.post('/register', userController.register);
 

@@ -14,17 +14,8 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item">Settings</a></li>
-                <li><a class="dropdown-item">Activity Log</a></li>
-                <li>
-                    <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item">Logout</a></li>
-            </ul>
+        <li class="nav-item">
+            <button (click)="logout()" class="dropdown-item text-white">Cerrar sesión</button>
         </li>
     </ul>
 </nav>
@@ -32,20 +23,27 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Bienvenido </h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+                <h1 class="mt-4 text-center">Bienvenido </h1>
                 <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        Datos del usuario
+                    <div class="row p-4 text-center align-items-center justify-content-center">
+                        <p class="fs-3 text-black">
+                            <span class="fw-bolder">Nombre: </span> {{user.name}} {{user.surname}}
+                        </p>
+                        <p class="fs-3">
+                            <span class="fw-bolder">Correo: </span> {{user.email}}
+                        </p>
+                        <p class="fs-3">
+                            <span class="fw-bolder">Fecha de registro: </span>{{user.created_at |
+                            formatDate:'dd/MM/yyyy, HH:mm:ss' }}
+                        </p>
+                        <div class="col-2">
+                            <button class="btn btn-success" (click)="downloadPDF()">Descargar formato</button>
+                        </div>
                     </div>
-                    <p class="text-black">
-                        {{user.name}}
-                    </p>
                 </div>
+
             </div>
         </main>
+
     </div>
 </div>

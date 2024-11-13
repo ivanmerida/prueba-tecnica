@@ -1,6 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 // Importamos librería para generar el pdf
 require('fpdf186/fpdf.php');
+
 class GenerarPdf extends FPDF
 {
     function Header()
@@ -30,16 +32,27 @@ class GenerarPdf extends FPDF
     }
 }
 
-// Datos del usuario (pueden venir de una base de datos o de un formulario)
-$usuario = [
-    'nombre' => 'Juan Perez',
-    'email' => 'juan.perez@example.com',
-    'edad' => 30,
-    'ciudad' => 'Comitán'
-];
 
-// Crear instancia del PDF y generar el reporte
-$pdf = new GenerarPdf();
-$pdf->AddPage();
-$pdf->ReporteUsuario($usuario);
-$pdf->Output('D', 'reporte_usuario.pdf'); // 'D' para forzar descarga
+// Obtener los datos enviados desde Angular (deben enviarse como JSON)
+$data = json_decode(file_get_contents('php://input'), true);
+
+// Comprobamos si nos llega la información
+if ($data) {
+    $timestamp = strtotime($data['created_at']);
+    $formatDate = date("d/m/Y H:i:s", $timestamp);
+    $usuario = [
+        'Nombre' => $data['name'] . ' ' . $data['surname'],
+        'Email' => $data['email'],
+        'Fecha de creacion' => $formatDate
+    ];
+
+    // Crear instancia del PDF y generar el reporte
+    $pdf = new GenerarPdf();
+    $pdf->AddPage();
+    $pdf->ReporteUsuario($usuario);
+
+    // Configuración de la respuesta HTTP para descargar el archivo
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="reporte_usuario.pdf"');
+    $pdf->Output();
+}

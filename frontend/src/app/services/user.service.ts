@@ -34,4 +34,18 @@ export class UserService {
     localStorage.removeItem('user');
   }
 
+  // Verifica si el usuario está autenticado
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('userToken');  // Devuelve true si hay un token
+  }
+
+  logout() {
+    localStorage.removeItem('userToken');
+  }
+
+  // método api para generar reportepdf
+  getReport(data: {}): Observable<Blob> {
+    const api = 'http://localhost:3000/service-php/index.php';
+    return this.http.post(api, data, { responseType: 'blob' });
+  }
 }

@@ -9,9 +9,9 @@ const jwt = require('../helpers/jwt');
 
 const userController = {
 
+    // método de autenticación 
     login: async (req, res) => {
         let data = req.body;
-        console.log(data);
         try {
             const query = `SELECT * FROM users WHERE email = '${data.email}';`;
             let [reg] = await connection.query(query);
@@ -40,7 +40,8 @@ const userController = {
                     data: {
                         name: user.name,
                         surname: user.surname,
-                        email: user.email
+                        email: user.email,
+                        created_at: user.created_at
                     },
                     token: jwt.createToken(user)
                 });
@@ -53,21 +54,7 @@ const userController = {
         }
     },
 
-    getUser: async (req, res) => {
-        try {
-            let id = req.params.id;
-            const query_user_login = `SELECT * FROM users WHERE id_user = ${id};`;
-            const [reg] = await connection.query(query_user_login);
-            res.status(200).send({
-                data: reg
-            });
-        } catch (err) {
-            res.status(500).send({
-                data: err
-            });
-        }
-
-    },
+    // método de registro de usuario
     register: async (req, res) => {
         let data = req.body;
         console.log(data);
