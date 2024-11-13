@@ -11,7 +11,7 @@ Se deben tener instalados estas versiones para que no haya ningún inconveniente
 
 2. Poner toda la carpeta prueba-tecnica en C:\xampp\htdocs si se usa xampp como servidor de php y mysql
     o como es mi caso wamp64: C:\wamp64\www - esto para que funcione el servicio de php (generar reporte)
-    se debe tener corriendo el servicio
+    se debe tener corriendo el servicio wamp64 o xampp
 
 3. Acceder a la carpeta api-nodejs
     1. Acceder a la carpeta src/database/create.sql copiar el script
